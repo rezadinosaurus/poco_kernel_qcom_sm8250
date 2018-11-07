@@ -869,10 +869,11 @@ static void memcg_set_kmem_cache_dying(struct kmem_cache *s)
 static void flush_memcg_workqueue(struct kmem_cache *s)
 {
 	/*
-	 * SLAB and SLUB deactivate the kmem_caches through call_rcu. Make
+	 * SLUB deactivates the kmem_caches through call_rcu. Make
 	 * sure all registered rcu callbacks have been invoked.
 	 */
-	rcu_barrier();
+	if (IS_ENABLED(CONFIG_SLUB))
+		rcu_barrier();
 
 	/*
 	 * SLAB and SLUB create memcg kmem_caches through workqueue and SLUB
