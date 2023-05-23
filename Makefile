@@ -668,6 +668,14 @@ LLVM_NM		:= llvm-nm
 export LLVM_AR LLVM_NM
 endif
 
+ifdef CONFIG_CC_IS_GCC
+GCC_FLAGS	:= -fgraphite \
+		   -fgraphite-identity \
+		   -floop-nest-optimize \
+		   -fno-semantic-interposition
+KBUILD_CFLAGS	+= $(GCC_FLAGS)
+endif
+
 # The arch Makefile can set ARCH_{CPP,A,C}FLAGS to override the default
 # values of the respective KBUILD_* variables
 ARCH_CPPFLAGS :=
