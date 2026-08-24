@@ -197,7 +197,9 @@ err:
 
 static int wg_get_device_start(struct netlink_callback *cb)
 {
+	struct nlattr **attrs = genl_family_attrbuf(&genl_family);
 	struct wg_device *wg;
+	int ret;
 
 	ret = nlmsg_parse_deprecated(cb->nlh,
 				     GENL_HDRLEN + genl_family.hdrsize, attrs,
