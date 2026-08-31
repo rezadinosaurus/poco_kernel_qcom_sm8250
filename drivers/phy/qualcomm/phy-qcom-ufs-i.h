@@ -34,7 +34,7 @@
 		(val) = readl(addr); \
 		if (cond) \
 			break; \
-		if (timeout_us && ktime_compare(ktime_get(), timeout) > 0) { \
+		if (timeout_us != 0 && ktime_compare(ktime_get(), timeout) > 0) { \
 			(val) = readl(addr); \
 			break; \
 		} \
