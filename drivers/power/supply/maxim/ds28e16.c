@@ -343,7 +343,7 @@ int DS28E16_standard_cmd_flow(unsigned char *write_buf, int delay_ms,
 	// check for strong pull-up
 	if (delay_ms > 0) {
 		write_byte(CMD_RELEASE_BYTE);
-		Delay_us(1000 * delay_ms);
+		usleep_range(1000 * delay_ms, 1200 * delay_ms);
 	}
 
 	read_byte();
